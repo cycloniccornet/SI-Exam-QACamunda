@@ -15,7 +15,9 @@ public class LoggerDelegate implements JavaDelegate {
         LOGGER.info("\n\n ... Logger Delegate invoked by " +
                 "processDefinitionId=" + execution.getProcessDefinitionId()
                 + ", activityId=" + execution.getCurrentActivityId()
-                + "\nThis is the message : " + execution.getVariable("question"));
+                + "\nThis is the message : " + execution.getVariable("question")
+        + "\nBusiness Key = " + execution.getBusinessKey()
+        + "\nMessae Name = " + execution.getCurrentActivityName());
 
     }
 }
