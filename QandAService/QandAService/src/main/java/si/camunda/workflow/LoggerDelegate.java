@@ -14,7 +14,8 @@ public class LoggerDelegate implements JavaDelegate {
     public void execute(DelegateExecution execution) throws Exception {
         LOGGER.info("\n\n ... Logger Delegate invoked by " +
                 "processDefinitionId=" + execution.getProcessDefinitionId()
-                + ", activityId=" + execution.getCurrentActivityId());
+                + ", activityId=" + execution.getCurrentActivityId()
+                + "\nThis is the message : " + execution.getVariable("question"));
 
     }
 }

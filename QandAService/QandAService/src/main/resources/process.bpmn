@@ -34,7 +34,7 @@
       <bpmn:messageEventDefinition id="MessageEventDefinition_0s72w21" messageRef="Message_1vzy8ti" />
     </bpmn:boundaryEvent>
     <bpmn:sequenceFlow id="Flow_031aa0w" name="Question has been edited" sourceRef="Event_1yzxlyf" targetRef="Activity_0rwcn7x" />
-    <bpmn:userTask id="Activity_1fdo3rb" name="Answer question" camunda:formRef="camunda-forms:/forms/SaveQuestion.form" camunda:formRefBinding="latest">
+    <bpmn:userTask id="Activity_1fdo3rb" name="Answer question">
       <bpmn:incoming>Flow_1pnquae</bpmn:incoming>
       <bpmn:outgoing>Flow_1goj8wx</bpmn:outgoing>
     </bpmn:userTask>
@@ -63,6 +63,10 @@
   <bpmn:message id="Message_1vzy8ti" name="QuestionEdited" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="QandAService-process">
+      <bpmndi:BPMNEdge id="Flow_1goj8wx_di" bpmnElement="Flow_1goj8wx">
+        <di:waypoint x="730" y="210" />
+        <di:waypoint x="842" y="210" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_16vf2qy_di" bpmnElement="Flow_16vf2qy">
         <di:waypoint x="568" y="320" />
         <di:waypoint x="632" y="320" />
@@ -100,10 +104,6 @@
         <di:waypoint x="218" y="210" />
         <di:waypoint x="270" y="210" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1goj8wx_di" bpmnElement="Flow_1goj8wx">
-        <di:waypoint x="730" y="210" />
-        <di:waypoint x="842" y="210" />
-      </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_0n3xbna_di" bpmnElement="Event_07wf6xl">
         <dc:Bounds x="182" y="192" width="36" height="36" />
         <bpmndi:BPMNLabel>
@@ -137,16 +137,16 @@
       <bpmndi:BPMNShape id="Event_1xiohw0_di" bpmnElement="Event_1xiohw0">
         <dc:Bounds x="902" y="72" width="36" height="36" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_1295te1_di" bpmnElement="Event_01nzzdh">
-        <dc:Bounds x="632" y="302" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="614" y="345" width="72" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_0kqtqha_di" bpmnElement="Event_07fgb5l">
         <dc:Bounds x="842" y="192" width="36" height="36" />
         <bpmndi:BPMNLabel>
           <dc:Bounds x="823" y="168" width="74" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1295te1_di" bpmnElement="Event_01nzzdh">
+        <dc:Bounds x="632" y="302" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="614" y="345" width="72" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_1p4srkb_di" bpmnElement="Event_1yzxlyf">

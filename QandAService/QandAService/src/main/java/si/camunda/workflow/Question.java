@@ -6,7 +6,7 @@ import org.camunda.bpm.engine.delegate.JavaDelegate;
 import javax.inject.Named;
 
 @Named
-public class Questions implements JavaDelegate {
+public class Question implements JavaDelegate {
 
     @Override
     public void execute(DelegateExecution delegateExecution) throws Exception {
