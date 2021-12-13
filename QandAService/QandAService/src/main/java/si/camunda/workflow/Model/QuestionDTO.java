@@ -1,4 +1,4 @@
-package Model;
+package si.camunda.workflow.Model;
 /*
 import javax.persistence.Entity;
 import javax.persistence.Id;
