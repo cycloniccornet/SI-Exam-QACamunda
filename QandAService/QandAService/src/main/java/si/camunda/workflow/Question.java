@@ -1,6 +1,5 @@
 package si.camunda.workflow;
 
-import org.apache.tomcat.jni.Time;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,11 +11,9 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 import org.camunda.bpm.engine.delegate.JavaDelegate;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 
 @Named
@@ -33,7 +30,7 @@ public class Question implements JavaDelegate {
 
     private static final Logger logger = LoggerFactory.getLogger(ConsumerService.class);
 
-    String[] answers = new String[]{"login", "no login", "password"};
+    List<String> similarQuestionList = new ArrayList<>();
 
     public void execute(DelegateExecution execution) throws Exception {
 
@@ -43,36 +40,8 @@ public class Question implements JavaDelegate {
 
         producerService.sendMessage(question);
 
-
-/*
-        ProcessInstance startProcess = runtimeService.createMessageCorrelation("externalAnswer")
-                .processInstanceBusinessKey(bk)
-                .setVariable("question", answers[i])
-                .correlateStartMessage();
-
-
- */
-
-        /*  TODO - Is this nessesary?
-        if (question.contains("login")){
-            for (int i = 0; i<answers.length; i++) {
-                if (answers[i].contains("login")) {
-                    System.out.println("The question contains : " + answers[i]);
-                    ProcessInstance startProcess = runtimeService.createMessageCorrelation("externalAnswer")
-                            .processInstanceBusinessKey(bk)
-                            .setVariable("question", answers[i])
-                            .correlateStartMessage();
-                }
-            }
-
-        }
-
-         */
-
     }
 
-
-    List<String> similarQuestionList = new ArrayList<>();
 
     @KafkaListener(topics = "similar-questions", groupId = "questionable-group")
     public void getSimilarQuestions(String answers){
@@ -86,7 +55,7 @@ public class Question implements JavaDelegate {
 
         for (int i = 0; i < similarQuestionList.size(); i++) {
             ProcessInstance startProcess = runtimeService.createMessageCorrelation("externalAnswer")
-                    .processInstanceBusinessKey("1")
+                    //.processInstanceBusinessKey("1")
                     .setVariable("question", similarQuestionList.get(i))
                     .correlateStartMessage();
         }
