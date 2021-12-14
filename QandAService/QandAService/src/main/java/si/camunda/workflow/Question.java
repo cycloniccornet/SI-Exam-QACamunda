@@ -36,12 +36,12 @@ public class Question implements JavaDelegate {
 
         String question = (String) execution.getVariable("question");
         String bk = execution.getBusinessKey();
-        System.out.println("Message is : " + question + " With Business Key : " + bk);
+        logger.info("Message is : " + question + " With Business Key : " + bk);
 
-        producerService.sendMessage(question);
+        producerService.createQueue(question);
 
     }
-
+/*
 
     @KafkaListener(topics = "similar-questions", groupId = "questionable-group")
     public void getSimilarQuestions(String answers){
@@ -54,10 +54,12 @@ public class Question implements JavaDelegate {
         System.out.println(similarQuestionList);
 
         for (int i = 0; i < similarQuestionList.size(); i++) {
-            ProcessInstance startProcess = runtimeService.createMessageCorrelation("externalAnswer")
+            ProcessInstance startProcess = runtimeService. createMessageCorrelation("externalAnswer")
                     //.processInstanceBusinessKey("1")
                     .setVariable("question", similarQuestionList.get(i))
                     .correlateStartMessage();
         }
     }
+
+ */
 }
