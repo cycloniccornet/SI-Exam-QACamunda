@@ -17,7 +17,7 @@ public class LoggerDelegate implements JavaDelegate {
                 + ", activityId=" + execution.getCurrentActivityId()
                 + "\nThis is the message : " + execution.getVariable("question")
         + "\nBusiness Key = " + execution.getBusinessKey()
-        + "\nMessae Name = " + execution.getCurrentActivityName());
+        + "\nMessage Name = " + execution.getCurrentActivityName());
 
     }
 }
