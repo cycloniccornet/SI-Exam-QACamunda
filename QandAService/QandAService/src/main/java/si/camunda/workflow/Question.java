@@ -3,7 +3,7 @@ package si.camunda.workflow;
 import org.camunda.bpm.engine.runtime.ProcessInstance;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.kafka.annotation.KafkaListener;
+
 import si.camunda.workflow.Consumer.ConsumerService;
 import si.camunda.workflow.Producer.ProducerService;
 import org.camunda.bpm.engine.RuntimeService;
@@ -38,10 +38,10 @@ public class Question implements JavaDelegate {
         String bk = execution.getBusinessKey();
         System.out.println("Message is : " + question + " With Business Key : " + bk);
 
-        producerService.sendMessage(question);
+        producerService.createQueue(question);
 
     }
-
+/*
 
     @KafkaListener(topics = "similar-questions", groupId = "questionable-group")
     public void getSimilarQuestions(String answers){
@@ -59,5 +59,5 @@ public class Question implements JavaDelegate {
                     .setVariable("question", similarQuestionList.get(i))
                     .correlateStartMessage();
         }
-    }
+    }*/
 }
