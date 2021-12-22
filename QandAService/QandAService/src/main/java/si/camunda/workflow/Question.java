@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import javax.inject.Named;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 
 @Named
@@ -40,6 +41,13 @@ public class Question implements JavaDelegate {
 
         producerService.createQueue(question);
 
+
+        TimeUnit.SECONDS.sleep(5);
+
+        System.out.println("Passed sleeper "+ consumerService.fetchMessage());
+        //todo: Send message to camunda
+        // message = somequestion / No questions
+        execution.setVariable("temp", consumerService.fetchMessage());
     }
 /*
 
